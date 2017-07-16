@@ -1,4 +1,7 @@
-@import "bulma";
+:global {
+  @import 'bulma';
+}
+
 @import "../node_modules/datalens-ui/Panel/index.css";
 @import "../node_modules/datalens-ui/Label/index.css";
 @import "../node_modules/datalens-ui/ColorLegend/index.css";
