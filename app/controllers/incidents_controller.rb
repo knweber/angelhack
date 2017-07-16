@@ -7,7 +7,6 @@ class IncidentsController < ApplicationController
     add_marker_data = []
     @incidents.each do |incident|
       info = incident.single_incident_info
-      p info
       add_marker_data.push(info)
     end
     add_marker_data.to_json
