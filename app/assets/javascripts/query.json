@@ -1,11 +1,8 @@
 {
     "query": {
         "metrics": [
-            "count",
-            "ptx",
-            "pty",
-            "latitude",
-            "longitude"
+            "lat",
+            "lon"
         ],
         "facets": [
             "cx",

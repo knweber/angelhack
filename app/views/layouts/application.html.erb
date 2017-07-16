@@ -3,28 +3,47 @@
   <head>
     <title>PoliceWatch</title>
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-    <link rel="stylesheet" type="text/css" href="https://js.cit.api.here.com/v3/3.0/mapsjs-ui.css" />
+     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+     <script src="https://use.fontawesome.com/e795c6fc1a.js"></script>
+    <!-- <link rel="stylesheet" href="application.css"> -->
+    <link rel="stylesheet" type="text/css"
+     href="https://js.cit.api.here.com/v3/3.0/mapsjs-ui.css" />
     <!-- <link rel="stylesheet" type="text/css" href="./dist/index.css"> -->
     <style>
-      @import "../node_modules/datalens-ui/Panel/index.css";
-      @import "../node_modules/datalens-ui/Label/index.css";
-      @import "../node_modules/datalens-ui/ColorLegend/index.css";
-      @import "../node_modules/datalens-ui/Select/index.css";
       body {
           margin: 10px;
           padding: 10px;
       }
       .dl-map {
           position: relative;
-          /*top: 0;
-          bottom: 0;*/
+          top: 0;
+          bottom: 0;
           width: 90%;
           height: 500px;
+          margin: 0 auto;
       }
 </style>
-  </head>
+<section class="hero is-dark">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        PoliceWatch
+      </h1>
+      <h2 class="subtitle">
+        Visualizing Officer-Involved Deaths (2015-2016)
+      </h2>
+    </div>
+  </div>
+</section>
+<nav class="breadcrumb">
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/resources">Resources</a></li>
+  </ul>
+</nav>
+</head>
   <body>
-    <!-- <%= stylesheet_link_tag    'application', media: 'all' %> -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <div class="dl-map"></div>
     <script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-core.js"></script>
@@ -34,115 +53,21 @@
     <script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-clustering.js"></script>
     <script type="text/javascript" src="https://js.cit.datalens.api.here.com/2.3/mapsjs-datalens.js"></script>
     <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
-    <!-- <script type="text/javascript" src="./dist/index.js"></script> -->
-    <script>
-    // Place all the behaviors and hooks related to the matching controller here.
-    // All this logic will automatically be available in application.js.
-    (function () {
-    'use strict';
-
-    var app_id = "DemoAppId01082013GAL";
-    var app_code = "AJKnXv84fjrb0KIHawS0Tg";
-    var host = "cit.datalens.api.here.com";
-    var queries = {"query":{"fileName":"query.json","dataset":"57b42548635b42cab517d62db91ee954","id":"567f23e2902542619d849ecf0544f117"}};
-
-    const {query} = queries;
-
-    //initialize communication with the platform
-    const platform = new H.service.Platform({
-        app_id,
-        app_code,
-        useCIT: Boolean(host.match('cit')),
-        useHTTPS: true
-    });
-
-    //initialize a map
-    const pixelRatio = devicePixelRatio > 1 ? 2 : 1;
-    const defaultLayers = platform.createDefaultLayers({tileSize: 256 * pixelRatio});
-    const map = new H.Map(
-        document.getElementsByClassName('dl-map')[0],
-        defaultLayers.normal.basenight,
-        {pixelRatio}
-    );
-
-    window.addEventListener('resize', function() {
-        map.getViewPort().resize();
-    });
-
-    //make the map interactive
-    new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
-    const ui = H.ui.UI.createDefault(map, defaultLayers);
-
-    //instantiate Geo-visualization service
-    const service = platform.configure(new H.datalens.Service());
-
-    //set map position
-    map.setCenter(new H.geo.Point(40.018338, -98.060158));
-    map.setZoom(4, false);
-
-    let provider = new H.datalens.QueryTileProvider(
-        service,
-        {
-            queryId: query.id,
-            tileParamNames: {x: 'x', y: 'y', z: 'z'},
-            queryParams: {
-                cluster_size: 128
-            }
-        }
-    );
-
-    let countScale = d3.scaleLinear()
-        .domain([0, 100])
-        .range([25, 55])
-        .clamp(true);
-
-    let layer = new H.datalens.ObjectLayer(
-        provider,
-        {
-            rowToMapObject: function(row) {
-                return new H.map.Marker(
-                    {lat: row.latitude, lng: row.longitude}
-                );
-            },
-            rowToStyle: function(row) {
-                let size = countScale(row.count) * pixelRatio;
-                //Icon takes path and fit it icon size
-                let icon = H.datalens.ObjectLayer.createIcon([
-                    'svg',
-                    {
-                        viewBox: [-size, -size, size * 2, size * 2]
-                    },
-                    ['path', {
-                        d: d3.arc()({ //fill
-                            startAngle: 0,
-                            endAngle: 360,
-                            outerRadius: size
-                        }),
-                        fill: '#0092b3',
-                        fillOpacity: 0.8
-                    }],
-                    ['text', {
-                        x: 0,
-                        y: 10 * pixelRatio,
-                        fontFamily: 'sans-serif',
-                        fontWeight: 100,
-                        fontSize: 22 * pixelRatio,
-                        textAnchor: 'middle',
-                        fill: 'white'
-                    },
-                    String(row.count)]
-                ], {size: size});
-                return {icon: icon};
-            }
-        }
-    );
-
-    //add layer on map
-    map.addLayer(layer);
-
-    }());
-</script>
     <%= javascript_include_tag 'application' %>
     <%= yield %>
   </body>
+  <footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+        <strong>PoliceWatch</strong> by <a href="http://github.com/joel-g">Joel Guerra </a> and <a href="http://github.com/knweber">Kris Weber</a>.
+      </p>
+      <p>
+        <a class="icon" href="http://github.com/knweber/police-watch">
+          <i class="fa fa-github"></i>
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>
 </html>

@@ -1,4 +1,10 @@
+@import "bulma";
 @import "../node_modules/datalens-ui/Panel/index.css";
+@import "../node_modules/datalens-ui/Label/index.css";
+@import "../node_modules/datalens-ui/ColorLegend/index.css";
+@import "../node_modules/datalens-ui/Select/index.css";
+
+/*@import "../node_modules/datalens-ui/Panel/index.css";
 @import "../node_modules/datalens-ui/Label/index.css";
 @import "../node_modules/datalens-ui/ColorLegend/index.css";
 @import "../node_modules/datalens-ui/Select/index.css";
@@ -11,7 +17,7 @@ body {
     top: 0;
     bottom: 0;
     width: 100%;
-}
+}*/
 
 
 /*
