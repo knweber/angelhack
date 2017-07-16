@@ -1,11 +1,26 @@
 require 'csv'
 require 'geocoder'
 
-# CSV.foreach('lib/counted.csv') do |row |
-# p Geocoder.search(row[7] + ', ' + row[8] + ',' + row[9])
-# end
+csv_arr = CSV.read('lib/counted.csv')
 
-p Geocoder.search(Incident.find(1).full_address)
+csv_arr.each do |row|
+  incident = Incident.find_by(name: row[0])
+  if incident.lat
+    row << incident.lat
+    row << incident.lon
+    CSV.open('lib/counted_with_coords', 'wb') do |csv|
+      csv << row
+    end
+  else
+    csv_arr.delete(row)
+  end
+end
 
 #
-# {"long_name"=>"Hampton", "short_name"=>"Hampton", "types"=>["locality", "political"]}, {"long_name"=>"Henry County", "short_name"=>"Henry County", "types"=>["administrative_area_level_2", "political"]}, {"long_name"=>"Georgia", "short_name"=>"GA", "types"=>["administrative_area_level_1", "political"]}
+# CSV.open('lib/counted_with_coords.csv', 'w') do |csv|
+#   r = 0
+#   csv_arr.length.times do
+#   csv << csv_arr[r]
+#     r += 1
+#   end
+# end

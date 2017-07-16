@@ -14,6 +14,8 @@ class CreateIncidents < ActiveRecord::Migration[5.1]
       t.string :cause
       t.string :dept
       t.string :armed
+      t.float :lat
+      t.float :lon
       t.timestamps
     end
   end
