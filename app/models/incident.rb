@@ -1,4 +1,5 @@
 class Incident < ApplicationRecord
+
   def full_address
     if self.address
     self.intersection + ", " + self.city + ", " + self.state
