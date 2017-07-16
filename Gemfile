@@ -42,7 +42,7 @@ gem 'railties'
 # gem 'sprockets', '>= 2.8, < 4.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'bulma-rails', '~> 0.4.3'
+# gem 'bulma-rails', '~> 0.4.3'
 gem 'sass', '~> 3.2'
 gem 'font-awesome-rails'
 
