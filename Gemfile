@@ -21,7 +21,7 @@ gem 'puma', '~> 3.7'
 
 # Use CoffeeScript for .coffee assets and views
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'sprockets', '~> 3.0'
+gem 'sprockets-rails', '~> 3.0'
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
@@ -39,9 +39,12 @@ group :development, :test do
   gem 'faker'
 end
 
+gem 'sprockets (>= 2.8, < 4.0)'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'bulma-rails', '~> 0.4.3'
+gem 'sass (~> 3.2)'
+gem 'font-awesome-rails (4.7.0.1)'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
