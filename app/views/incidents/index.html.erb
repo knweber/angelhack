@@ -1,5 +1,5 @@
-<div class=''>
-  <%  %>
+<div class='info'>
+  <% single_incident_info %>
 </div>
 
 <script>
@@ -16,7 +16,6 @@ function addMarkerToGroup(group, coordinate, html) {
   group.addObject(marker);
 
 }
-
 
 // Clicking on a marker opens an infobubble which holds HTML content related to the marker.
 // @param  {H.Map} map      A HERE Map instance within the application
@@ -37,9 +36,20 @@ function addInfoBubble(map) {
     ui.addBubble(bubble);
   }, false);
 
-    addMarkerToGroup(group, coordinates, html);
+  $.ajax({
+    method: 'get',
+    url: '/index'
+  }).done(function(response){
+    var incidentsInfo = JSON.parse(response);
+    for (var i = 0; i < incidentsInfo.length; i++){
+      var info = incidentsInfo[i];
+      addMarkerToGroup(group, info.coord_pair, info.html_snippet)
+    }
+  })
+
 
   };
+
 
 
 // Place all the behaviors and hooks related to the matching controller here.
