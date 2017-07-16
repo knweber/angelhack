@@ -1,4 +1,43 @@
 <script>
+
+// * Creates a new marker and adds it to a group
+// * @param {H.map.Group} group       The group holding the new marker
+// * @param {H.geo.Point} coordinate  The location of the marker
+// * @param {String} html             Data associated with the marker
+
+function addMarkerToGroup(group, coordinate, html) {
+  var marker = new H.map.Marker(coordinate);
+  // add custom data to the marker
+  marker.setData(html);
+  group.addObject(marker);
+
+}
+
+
+// Clicking on a marker opens an infobubble which holds HTML content related to the marker.
+// @param  {H.Map} map      A HERE Map instance within the application
+function addInfoBubble(map) {
+  var group = new H.map.Group();
+
+  map.addObject(group);
+
+  // add 'tap' event listener, that opens info bubble, to the group
+  group.addEventListener('tap', function (evt) {
+    // event target is the marker itself, group is a parent event target
+    // for all objects that it contains
+    var bubble =  new H.ui.InfoBubble(evt.target.getPosition(), {
+      // read custom data
+      content: evt.target.getData()
+    });
+    // show info bubble
+    ui.addBubble(bubble);
+  }, false);
+
+    addMarkerToGroup(group, coordinates, html);
+
+  };
+
+
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 (function () {
@@ -6,16 +45,17 @@
 
 var app_id = "qOZLRAqisXS2lkh5Qa1x";
 var app_code = "A4O8jBu38pcEi5vsqwr9vA";
-var host = "cit.datalens.api.here.com";
-var queries = {"query":{"fileName":"query.json","dataset":"57b42548635b42cab517d62db91ee954","id":"567f23e2902542619d849ecf0544f117"}};
+var host = "https://datalens.api.here.com";
+var queries = {"query":{"fileName":"query.json","dataset":"incidents_with_coords.csv","id":"02ee643a5dce451a9a6fea86684fd546"}};
 
 const {query} = queries;
 
 //initialize communication with the platform
+// July 16 - changed useCIT to true
 const platform = new H.service.Platform({
     app_id,
     app_code,
-    useCIT: Boolean(host.match('cit')),
+    useCIT: true,
     useHTTPS: true
 });
 
@@ -102,6 +142,8 @@ let layer = new H.datalens.ObjectLayer(
 
 //add layer on map
 map.addLayer(layer);
-
+addInfoBubble(map);
 }());
+// Group markers and add info bubbles
+
 </script>

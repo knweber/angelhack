@@ -47,5 +47,13 @@ class Incident < ApplicationRecord
     end
   end
 
+  def single_incident_info
+    coord_pair = '{'+ self.lat + ', ' + self.lon + '}'
+
+    date = self.month + ' ' + self.day.to_s + ', ' + self.year.to_s;
+
+    html_snippet = '<div>' + self.name + '</div>' + '<div><br>' + date + '</div>' +  '<div><br>' + self.race + ', ' + self.sex +  ', ' + self.age.to_s + ' years old' + '</div>' + '<div><br>' + self.cause + '</div>';
+  end
+
 
 end
