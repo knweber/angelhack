@@ -1,3 +1,19 @@
+@import "../node_modules/datalens-ui/Panel/index.css";
+@import "../node_modules/datalens-ui/Label/index.css";
+@import "../node_modules/datalens-ui/ColorLegend/index.css";
+@import "../node_modules/datalens-ui/Select/index.css";
+body {
+    margin: 0;
+    padding: 0;
+}
+.dl-map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.

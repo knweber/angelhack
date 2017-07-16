@@ -1,0 +1,197 @@
+{
+    "query": {
+        "metrics": [
+            "count",
+            "ptx",
+            "pty",
+            "latitude",
+            "longitude"
+        ],
+        "facets": [
+            "cx",
+            "cy"
+        ],
+        "namespace": {
+            "count": {
+                "apply": [
+                    {
+                        "type": "aggregate",
+                        "fn": "count_all"
+                    }
+                ]
+            },
+            "tz": {
+                "source": [
+                    {
+                        "$input": "z"
+                    }
+                ]
+            },
+            "tx": {
+                "source": [
+                    {
+                        "$input": "x"
+                    }
+                ]
+            },
+            "ty": {
+                "source": [
+                    {
+                        "$input": "y"
+                    }
+                ]
+            },
+            "cluster_size": {
+                "source": [
+                    {
+                        "default": 32,
+                        "$input": "cluster_size"
+                    }
+                ]
+            },
+            "buffer": {
+                "source": [
+                    {
+                        "default": 0,
+                        "$input": "buffer"
+                    }
+                ]
+            },
+            "px": {
+                "source": [
+                    "Lon",
+                    "tz"
+                ],
+                "apply": [
+                    {
+                        "type": "transform",
+                        "fn": "lon_to_x"
+                    }
+                ]
+            },
+            "py": {
+                "source": [
+                    "Lat",
+                    "tz"
+                ],
+                "apply": [
+                    {
+                        "type": "transform",
+                        "fn": "lat_to_y"
+                    }
+                ]
+            },
+            "cy": {
+                "source": [
+                    "py",
+                    "cluster_size"
+                ],
+                "apply": [
+                    {
+                        "type": "transform",
+                        "fn": "div"
+                    },
+                    {
+                        "type": "transform",
+                        "fn": "ceil"
+                    }
+                ]
+            },
+            "cx": {
+                "source": [
+                    "px",
+                    "cluster_size"
+                ],
+                "apply": [
+                    {
+                        "type": "transform",
+                        "fn": "div"
+                    },
+                    {
+                        "type": "transform",
+                        "fn": "ceil"
+                    }
+                ]
+            },
+            "pty": {
+                "source": [
+                    "py"
+                ],
+                "apply": [
+                    {
+                        "type": "aggregate",
+                        "fn": "average"
+                    },
+                    {
+                        "type": "transform",
+                        "fn": "ceil"
+                    }
+                ]
+            },
+            "ptx": {
+                "source": [
+                    "px"
+                ],
+                "apply": [
+                    {
+                        "type": "aggregate",
+                        "fn": "average"
+                    },
+                    {
+                        "type": "transform",
+                        "fn": "ceil"
+                    }
+                ]
+            },
+            "longitude": {
+                "source": [
+                    "Lon"
+                ],
+                "apply": [
+                    {
+                        "type": "aggregate",
+                        "fn": "average"
+                    }
+                ]
+            },
+            "latitude": {
+                "source": [
+                    "Lat"
+                ],
+                "apply": [
+                    {
+                        "type": "aggregate",
+                        "fn": "average"
+                    }
+                ]
+            },
+            "pixels": {
+                "source": [
+                    "px",
+                    "py"
+                ]
+            }
+        },
+        "filters": [
+            {
+                "pixels": {
+                    "$pixel_within_tile": [
+                        "tx",
+                        "ty",
+                        "buffer"
+                    ]
+                }
+            },
+            {
+                "Lon": {
+                    "$ne": "$null"
+                }
+            },
+            {
+                "Lat": {
+                    "$ne": "$null"
+                }
+            }
+        ]
+    }
+}
