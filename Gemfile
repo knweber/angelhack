@@ -39,12 +39,12 @@ group :development, :test do
   gem 'faker'
 end
 
-gem 'sprockets (>= 2.8, < 4.0)'
+# gem 'sprockets', '>= 2.8, < 4.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'bulma-rails', '~> 0.4.3'
-gem 'sass (~> 3.2)'
-gem 'font-awesome-rails (4.7.0.1)'
+gem 'sass', '~> 3.2'
+gem 'font-awesome-rails', '4.7.0.1'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
