@@ -12,7 +12,7 @@ class Incident < ApplicationRecord
     end
   end
 
-  def lat
+  def latitude
     coords = Geocoder.search(self.full_address)[0]
     if coords
       coords.geometry['location']['lat']
@@ -21,7 +21,7 @@ class Incident < ApplicationRecord
     end
   end
 
-  def lon
+  def longitude
     coords = Geocoder.search(self.full_address)[0]
     if coords
       coords.geometry['location']['lng']

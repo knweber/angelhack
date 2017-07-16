@@ -9,5 +9,5 @@ incidents = CSV.read('lib/counted.csv')
 # end
 
 incidents.each do |inc|
-  Incident.create(name: inc[0], age: inc[1], sex: inc[2], race: inc[3], month: inc[4], day: inc[5], year: inc[6], address: inc[7], city: inc[8], state: inc[9], dept: inc[10], armed: inc[11])
+  Incident.create(name: inc[0], age: inc[1], sex: inc[2], race: inc[3], month: inc[4], day: inc[5], year: inc[6], address: inc[7], city: inc[8], state: inc[9], cause: [10], dept: inc[11], armed: inc[12])
 end

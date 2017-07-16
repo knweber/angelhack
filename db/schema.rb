@@ -23,12 +23,14 @@ ActiveRecord::Schema.define(version: 20170715192540) do
     t.string "month"
     t.integer "day"
     t.integer "year", null: false
-    t.string "address", null: false
+    t.string "address"
     t.string "city", null: false
     t.string "state", null: false
     t.string "cause"
     t.string "dept"
     t.string "armed"
+    t.float "lat"
+    t.float "lon"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

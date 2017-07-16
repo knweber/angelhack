@@ -8,7 +8,7 @@ class CreateIncidents < ActiveRecord::Migration[5.1]
       t.string :month
       t.integer :day
       t.integer :year, null:false
-      t.string :address, null:false
+      t.string :address
       t.string :city, null:false
       t.string :state, null:false
       t.string :cause
