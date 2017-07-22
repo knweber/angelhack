@@ -1,5 +1,7 @@
 {
   "name": "police-watch",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "mapbox-gl": "^0.38.0"
+  }
 }

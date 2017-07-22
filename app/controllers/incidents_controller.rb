@@ -1,16 +1,14 @@
 require 'json'
+require 'csv'
 
 class IncidentsController < ApplicationController
 
   def index
-
-    @incidents = Incident.all
-    # add_marker_data = []
-    # @incidents.each do |incident|
-    #   info = incident.single_incident_info
-    #   add_marker_data.push(info)
+    # CSV.foreach('lib/incidents_with_coords.csv', headers: true) do |row|
+    #   Incident.create! row.to_hash
     # end
-    # add_marker_data.to_json
+    # @incidents = Incident.all
+    # @incidents.to_json
   end
 
 end

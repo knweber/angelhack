@@ -1,5 +1,5 @@
-class Incident < ApplicationRecord
 
+class Incident < ApplicationRecord
 
   def full_address
     if self.address
@@ -49,8 +49,9 @@ class Incident < ApplicationRecord
     end
   end
 
+
   def single_incident_info
-    coord_pair = '{'+ self.lat + ', ' + self.lon + '}'
+    coord_pair = '{'+ self.lat.to_s + ', ' + self.lon.to_s + '}'
 
     date = self.month + ' ' + self.day.to_s + ', ' + self.year.to_s;
 

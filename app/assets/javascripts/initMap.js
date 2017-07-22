@@ -1,7 +1,4 @@
-<script>
 
-(function () {
-'use strict';
 
 
 var url = "https://datalens.api.here.com/v1/sign_in?" +
@@ -31,12 +28,11 @@ $.ajax({
 });
 
 
+
+
 var app_id = 'qOZLRAqisXS2lkh5Qa1x';
 var app_code = 'A4O8jBu38pcEi5vsqwr9vA';
 var host = "cit.datalens.api.here.com";
-var queries = {'query':{"fileName":'query.json', 'dataset':'02ee643a5dce451a9a6fea86684fd546', 'id':'f12aeda2c7884018b18c53a7fd7d2e09'}}
-
-const {query} = queries;
 
 var platform = new H.service.Platform({
   app_id,
@@ -127,7 +123,7 @@ let countScale = d3.scaleLinear()
 let layer = new H.datalens.ObjectLayer(
     provider,
     {
-        rowToMapObject: function(row) {
+      rowToMapObject: function(row) {
             return new H.map.Marker(
                 {lat: row.latitude, lng: row.longitude}
             );
@@ -206,6 +202,3 @@ map.addEventListener('pointermove', (e) => {
         }
     }
 });
-
-});
-</script>
