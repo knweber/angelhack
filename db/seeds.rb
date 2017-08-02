@@ -1,3 +1,5 @@
+require 'json'
+
 incidents = CSV.read('lib/incidents_with_coords.csv')
 
 
@@ -9,5 +11,5 @@ incidents = CSV.read('lib/incidents_with_coords.csv')
 # end
 
 incidents.each do |inc|
-  Incident.create(name: inc[0], age: inc[1], sex: inc[2], race: inc[3], month: inc[4], day: inc[5], year: inc[6], address: inc[7], city: inc[8], state: inc[9], cause: inc[10], dept: inc[11], armed: inc[12], lat: inc[13], lon: inc[14])
+  Incident.create(name: inc[1], age: inc[2], sex: inc[3], race: inc[4], month: inc[5], day: inc[6], year: inc[7], address: inc[8], city: inc[9], state: inc[10], cause: inc[11], dept: inc[12], armed: inc[13], lat: inc[14], lon: inc[15])
 end

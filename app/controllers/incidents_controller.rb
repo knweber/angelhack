@@ -3,14 +3,17 @@ require 'json'
 class IncidentsController < ApplicationController
 
   def index
-    @incidents = Incident.all
-    add_marker_data = []
-    @incidents.each do |incident|
-      info = incident.single_incident_info
-      p info
-      add_marker_data.push(info)
+     @incidents = Incident.all
+    #  respond_to do |format|
+    #    format.html { render :index }
+    #    format.js { render :json => @incidents}
+    #    format.json { render :json => @incidents}
+    #  end
+    if request.xhr?
+      render :json => @incidents
+    else
+      render :index
     end
-    add_marker_data.to_json
   end
 
 end

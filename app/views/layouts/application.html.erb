@@ -4,26 +4,23 @@
     <title>PoliceWatch</title>
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.3/css/bulma.min.css">
-     <script src="https://use.fontawesome.com/e795c6fc1a.js"></script>
-    <!-- <link rel="stylesheet" href="application.css"> -->
-    <link rel="stylesheet" type="text/css"
-     href="https://js.cit.api.here.com/v3/3.0/mapsjs-ui.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.3/css/bulma.min.css">
+    <script src="https://www.gstatic.com/firebasejs/4.1.5/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyA2HimoiVKH4WyqcF4hxvBwZIIzkfPBC-I",
+    authDomain: "policewatch-109e6.firebaseapp.com",
+    databaseURL: "https://policewatch-109e6.firebaseio.com",
+    projectId: "policewatch-109e6",
+    storageBucket: "policewatch-109e6.appspot.com",
+    messagingSenderId: "86075236298"
+  };
+  firebase.initializeApp(config);
+</script>
+    <script src="https://use.fontawesome.com/e795c6fc1a.js"></script>
+
     <!-- <link rel="stylesheet" type="text/css" href="./dist/index.css"> -->
-    <style>
-      body {
-          margin: 10px;
-          padding: 10px;
-      }
-      .dl-map {
-          position: relative;
-          top: 0;
-          bottom: 0;
-          width: 90%;
-          height: 500px;
-          margin: 0 auto;
-      }
-</style>
 <section class="hero is-dark">
   <div class="hero-body">
     <div class="container">
@@ -44,16 +41,22 @@
   </ul>
 </nav>
 </head>
+<script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
   <body>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <div class="dl-map"></div>
-    <script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-core.js"></script>
-    <script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-service.js"></script>
-    <script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-ui.js"></script>
-    <script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
-    <script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-clustering.js"></script>
-    <script type="text/javascript" src="https://js.cit.datalens.api.here.com/2.3/mapsjs-datalens.js"></script>
     <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+
+    <style>
+    .hero-body {
+        margin: 10px;
+        margin-bottom: 15px;
+        padding: 10px;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    </style>
     <%= javascript_include_tag 'application' %>
     <%= yield %>
   </body>
