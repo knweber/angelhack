@@ -1,3 +1,5 @@
+require 'json'
+
 incidents = CSV.read('lib/incidents_with_coords.csv')
 
 
